@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+       
+        
+        <script>
+            function computerPlay(){
+                let moves = ["Rock", "Paper", "Scissors"]
+                let selection = moves[Math.floor(Math.random()*moves.length)];
+                return selection
+            }
+            function playRound(playerSelection,computerSelection){
+                switch(playerSelection){
+                    
+                    case "Rock":
+                        switch (computerSelection)
+                        {
+                            case "Rock":
+                                console.log("You tie! " + playerSelection +" and " + computerSelection + " are equal!");
+                                return 0;
+                            break;
+
+                            case "Paper":
+                                console.log("You lose. " + computerSelection + " beats " + playerSelection+".");
+                                return -1;
+                            break;
+
+                            case "Scissors":
+                                console.log("You win! " + playerSelection + " beats " + computerSelection + ".");
+                                return 1;
+                            break;
+                        }
+
+                    break;
+
+                    case "Paper":
+                        switch (computerSelection)
+                        {
+                            case "Rock":
+                                console.log("You win! " + playerSelection + " beats " + computerSelection + ".");
+                                return 1;
+                                break;
+
+                            case "Paper":
+                                console.log("You tie! " + playerSelection +" and " + computerSelection + " are equal!");
+                                return 0;
+                                break;
+
+                            case "Scissors":
+                                console.log("You lose. " + computerSelection + " beats " + playerSelection+".");
+                                return -1;
+                                break;
+                        }
+                        break;
+
+                    
+                    case "Scissors":
+                        switch (computerSelection)
+                        {
+                            case "Rock":
+                                console.log("You lose. " + computerSelection + " beats " + playerSelection+".");
+                                return -1;
+                                break;
+
+                            case "Paper":
+                                console.log("You win! " + playerSelection + " beats " + computerSelection + ".");
+                                return 1;
+                                break;
+
+                            case "Scissors":
+                                console.log("You tie! " + playerSelection +" and " + computerSelection + " are equal!");
+                                return 0;
+                                break;
+                        }
+                        break;
+                }
+
+
+            }
+            function humanPlay(){
+               let pick = prompt("Let's play Rock, Paper, Scissors! What's your play?")
+               let choice = pick[0].toUpperCase() + pick.slice(1).toLowerCase();
+               console.log(choice);
+               return choice
+            }
+            function game(){
+                let humanWins = 0;
+                let compWins = 0;
+                for (i = 0; i < 5;  i ++){
+                    switch (playRound(humanPlay(),computerPlay())){
+                        case 1:
+                        humanWins++;
+                        break;
+
+                        case -1:
+                        compWins++;
+                        break;
+
+                        case 0:
+                        break;   
+                    }
+                    console.log("The score is " + humanWins + " human wins vs. "+ compWins + " computer wins.")
+                }
+
+                if (humanWins > compWins) {
+                console.log("Game over. You win!")
+                }
+                else if (compWins > humanWins){
+                    console.log("Game over. You lose.")
+                }
+                else if (compWins == humanWins) {
+                    console.log("It's a tie!")
+                }
+            }
+
+            game();
+
+        </script>
+    </body>
+</html>
